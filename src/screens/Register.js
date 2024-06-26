@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { Button, TextInput,View, Text, StyleSheet,ScrollView,TouchableOpacity } from "react-native";
 import { Formik } from 'formik';
+import validationRegister from "../helper/validationRegister";
 import React from "react";
 
 const Register = () => {
@@ -13,9 +14,10 @@ const Register = () => {
      username: '',
      password:'',
      confirmPassword: '' }}
+     validate={validationRegister}
      onSubmit={values => console.log(values)}
    >
-     {({ handleChange, handleBlur, handleSubmit, values }) => (
+     {({ handleChange, handleBlur, handleSubmit, values,errors, touched }) => (
         <ScrollView>
 
        <View style={styles.form}>
@@ -30,6 +32,7 @@ const Register = () => {
                     placeholder="John"
                     value={values.name}
                 />
+                {touched.name && errors.name && <Text style={styles.error}>{errors.name}</Text>}
             </View>
             <View style={styles.formSection}>
                 <Text style={styles.text}>Surname</Text>
@@ -40,6 +43,7 @@ const Register = () => {
                     placeholder="Smith"
                     value={values.surname}
                 />
+                {touched.surname && errors.surname && <Text style={styles.error}>{errors.surname}</Text>}
             </View>
             <View style={styles.formSection}>
                 <Text style={styles.text}>Username</Text>
@@ -50,6 +54,7 @@ const Register = () => {
                     placeholder="your.username33"
                     value={values.username}
                 />
+                {touched.username && errors.username && <Text style={styles.error}>{errors.username}</Text>}
             </View>
             <View style={styles.formSection}>
                 <Text style={styles.text}>Email</Text>
@@ -60,6 +65,7 @@ const Register = () => {
                     placeholder="mail@example.com"
                     value={values.email}
                 />
+                {touched.email && errors.email && <Text style={styles.error}>{errors.email}</Text>}
             </View>
             <View style={styles.formSection}>   
                 <Text style={styles.text}>Password</Text>
@@ -71,6 +77,7 @@ const Register = () => {
                     placeholder="***********"
                     secureTextEntry={true}
                 />
+                {touched.password && errors.password && <Text style={styles.error}>{errors.password}</Text>}
             </View>
             <View style={styles.formSection}>
                 <Text style={styles.text}>Confirm password</Text>
@@ -82,6 +89,7 @@ const Register = () => {
                     placeholder="***********"
                     secureTextEntry={true}
                 />
+                {touched.confirmPassword && errors.confirmPassword && <Text style={styles.error}>{errors.confirmPassword}</Text>}
             </View>
 
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
@@ -107,11 +115,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 15,
-        paddingVertical: 70,
+        paddingVertical: 60,
         backgroundColor: '#1D1E2C',
-        marginVertical:50,
+        marginVertical:80,
         marginHorizontal:20,
-        borderRadius: 10,
+        borderRadius: 40,
     },
     form: {
         flex: 1,
@@ -156,6 +164,9 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         fontSize:15,
         color: '#7E78D2'
+    },
+    error: {
+        color: 'red'
     }
 })
 
