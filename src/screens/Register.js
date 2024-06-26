@@ -13,7 +13,11 @@ const Register = () => {
      surname: '',
      username: '',
      password:'',
-     confirmPassword: '' }}
+     confirmPassword: '',
+     country: '',
+     city: '',
+     phone: ''
+    }}
      validate={validationRegister}
      onSubmit={values => console.log(values)}
    >
@@ -23,30 +27,11 @@ const Register = () => {
        <View style={styles.form}>
         <Text style={[styles.text, styles.title]}>Register</Text>
         <Text style={[styles.text, styles.description]}>Join now and start sharing your hobbies!</Text>
+        <Text style={styles.asterisk}>* Required fields</Text>
             <View style={styles.formSection}>
-                <Text style={styles.text}>Name</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={handleChange('name')}
-                    onBlur={handleBlur('name')}
-                    placeholder="John"
-                    value={values.name}
-                />
-                {touched.name && errors.name && <Text style={styles.error}>{errors.name}</Text>}
-            </View>
-            <View style={styles.formSection}>
-                <Text style={styles.text}>Surname</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={handleChange('surname')}
-                    onBlur={handleBlur('surname')}
-                    placeholder="Smith"
-                    value={values.surname}
-                />
-                {touched.surname && errors.surname && <Text style={styles.error}>{errors.surname}</Text>}
-            </View>
-            <View style={styles.formSection}>
-                <Text style={styles.text}>Username</Text>
+                <Text style={styles.text}>Username {" "}
+                    <Text style={styles.asterisk}>*</Text>
+                </Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={handleChange('username')}
@@ -57,7 +42,9 @@ const Register = () => {
                 {touched.username && errors.username && <Text style={styles.error}>{errors.username}</Text>}
             </View>
             <View style={styles.formSection}>
-                <Text style={styles.text}>Email</Text>
+                <Text style={styles.text}>Email {" "}
+                    <Text style={styles.asterisk}>*</Text>
+                </Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={handleChange('email')}
@@ -68,7 +55,9 @@ const Register = () => {
                 {touched.email && errors.email && <Text style={styles.error}>{errors.email}</Text>}
             </View>
             <View style={styles.formSection}>   
-                <Text style={styles.text}>Password</Text>
+                <Text style={styles.text}>Password {" "}
+                    <Text style={styles.asterisk}>*</Text>
+                </Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={handleChange('password')}
@@ -80,7 +69,9 @@ const Register = () => {
                 {touched.password && errors.password && <Text style={styles.error}>{errors.password}</Text>}
             </View>
             <View style={styles.formSection}>
-                <Text style={styles.text}>Confirm password</Text>
+                <Text style={styles.text}>Confirm password {" "}
+                    <Text style={styles.asterisk}>*</Text>
+                </Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={handleChange('confirmPassword')}
@@ -91,7 +82,41 @@ const Register = () => {
                 />
                 {touched.confirmPassword && errors.confirmPassword && <Text style={styles.error}>{errors.confirmPassword}</Text>}
             </View>
-
+            <View style={styles.formSection}>
+                <Text style={styles.text}>Country</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={handleChange('country')}
+                    onBlur={handleBlur('country')}
+                    placeholder="Your country"
+                    value={values.country}
+                />
+                {touched.country && errors.country && <Text style={styles.error}>{errors.country}</Text>}
+            </View>
+            <View style={styles.formSection}>
+                <Text style={styles.text}>City</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={handleChange('city')}
+                    onBlur={handleBlur('city')}
+                    placeholder="Your city"
+                    value={values.city}
+                />
+                {touched.city && errors.city && <Text style={styles.error}>{errors.city}</Text>}
+            </View>
+            <View style={styles.formSection}>
+                <Text style={styles.text}>Phone</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={handleChange('phone')}
+                    keyboardType="numeric"
+                    onBlur={handleBlur('phone')}
+                    placeholder="123456789"
+                    value={values.phone}
+                />
+                {touched.phone && errors.phone && <Text style={styles.error}>{errors.phone}</Text>}
+            </View>
+            
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                 <Text style={styles.buttonText}>Submit</Text>
             </TouchableOpacity>
@@ -166,6 +191,9 @@ const styles = StyleSheet.create({
         color: '#7E78D2'
     },
     error: {
+        color: 'red'
+    },
+    asterisk: {
         color: 'red'
     }
 })
