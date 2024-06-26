@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { Button, TextInput,View, Text, StyleSheet,ScrollView,TouchableOpacity } from "react-native";
 import { Formik } from 'formik';
+import { AntDesign } from '@expo/vector-icons';
 import validationLogin from "../helper/validationLogin";
 import React from "react";
 
@@ -51,6 +52,21 @@ const Login = () => {
                             <Text style={styles.linkText}>Register here</Text>
                         </TouchableOpacity>
                             </Text>
+            <View style={styles.rrssContainer}>
+                <Text style={styles.text}>Or sign up with</Text>
+                <View style={styles.rrss}>
+                   <TouchableOpacity>
+                        <AntDesign name="google" size={24} color="white" />
+                   </TouchableOpacity>
+                   <TouchableOpacity>
+                        <AntDesign name="github" size={24} color="white" />
+                   </TouchableOpacity>
+                   <TouchableOpacity>
+                        <AntDesign name="twitter" size={24} color="white" />
+                   </TouchableOpacity>
+                </View>
+
+            </View>
        </View>
         </ScrollView>
      )}
@@ -117,6 +133,17 @@ const styles = StyleSheet.create({
     },
     error: {
         color: 'red'
+    },
+    rrssContainer: {
+        flex:1,
+        alignItems: 'center',
+        gap: 10,
+        marginVertical: 50
+    },
+    rrss: {
+        flex: 1,
+        gap:15,
+        flexDirection: 'row'
     }
 })
 
