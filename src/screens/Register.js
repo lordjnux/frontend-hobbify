@@ -20,7 +20,7 @@ const Register = () => {
 
        <View style={styles.form}>
         <Text style={[styles.text, styles.title]}>Register</Text>
-        <Text style={[styles.text, styles.description]}>Join now and start sharing your interests!</Text>
+        <Text style={[styles.text, styles.description]}>Join now and start sharing your hobbies!</Text>
             <View style={styles.formSection}>
                 <Text style={styles.text}>Name</Text>
                 <TextInput
@@ -87,6 +87,12 @@ const Register = () => {
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                 <Text style={styles.buttonText}>Submit</Text>
             </TouchableOpacity>
+            <Text style={styles.text}>
+                    Already have an account? {" "}
+                        <TouchableOpacity onPress={() => console.log("Navigate to login screen")}>
+                            <Text style={styles.linkText}>Login here</Text>
+                        </TouchableOpacity>
+                            </Text>
        </View>
         </ScrollView>
      )}
@@ -125,7 +131,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontSize: 16
+        fontSize: 15
     },
     title: {
         alignSelf: 'center',
@@ -145,6 +151,11 @@ const styles = StyleSheet.create({
         color: 'white',
         alignSelf: 'center',
         padding: 15,
+    },
+    linkText: {
+        textDecorationLine: 'underline',
+        fontSize:15,
+        color: '#7E78D2'
     }
 })
 
