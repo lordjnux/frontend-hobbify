@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import HomeScreen from "./src/screens/HomeScreen";
-import Perfil from "./src/screens/Perfil";
+import PerfilScreen from "./src/screens/Perfil";
 
 export default function App() {
-  return <Perfil />;
+  return <PerfilScreen />;
 }
