@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { Button, TextInput,View, Text, StyleSheet,ScrollView,TouchableOpacity } from "react-native";
 import { Formik } from 'formik';
-import validationRegister from "../helper/validationRegister";
+import validationRegister from "../helpers/validationRegister";
 import React from "react";
 
 const Register = () => {

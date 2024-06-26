@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { Button, TextInput,View, Text, StyleSheet,ScrollView,TouchableOpacity } from "react-native";
 import { Formik } from 'formik';
 import { AntDesign } from '@expo/vector-icons';
-import validationLogin from "../helper/validationLogin";
+import validationLogin from "../helpers/validationLogin";
 import React from "react";
 
 const Login = () => {
