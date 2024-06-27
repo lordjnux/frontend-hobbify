@@ -5,5 +5,5 @@ import MainFeed from "./src/screens/MainFeed";
 import Messages from "./src/screens/Messages";
 import Chat from "./src/screens/Chat";
 export default function App() {
-  return <MainFeed />;
+  return <Chat />;
 }
