@@ -4,18 +4,28 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import React from "react";
 
-const MessagesHeader = ({ navigation }) => {
+const ChatHeader = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.arrow}>{"<"}</Text>
         </TouchableOpacity>
-        <Text>ACA VA UN BUSCADOR</Text>
-        <View></View>
+        <View>
+          <TouchableOpacity>
+            <Image
+              style={styles.profile}
+              source={require("../../../assets/no-pic.png")}
+            />
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity>
+          <Text style={{ color: "white", fontSize: 20 }}>... </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -40,6 +50,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 40,
   },
+  profile: {
+    width: 40,
+    height: 40,
+    borderRadius: 999,
+  },
 });
 
-export default MessagesHeader;
+export default ChatHeader;

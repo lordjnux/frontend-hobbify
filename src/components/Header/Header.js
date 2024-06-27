@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 
-const Header = ({ user }) => {
+const Header = ({ user, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
         <View style={{ width: 30 }}></View>
         <View style={styles.userProfile}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push("Perfil")}>
             <Image style={styles.profile} source={user.img} />
           </TouchableOpacity>
         </View>
