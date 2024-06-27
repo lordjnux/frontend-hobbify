@@ -2,24 +2,32 @@ import { StatusBar } from "expo-status-bar";
 import { Button, TextInput,View, Text, StyleSheet,ScrollView,TouchableOpacity } from "react-native";
 import { Formik } from 'formik';
 import validationRegister from "../helpers/validationRegister";
+import { registerUser } from "../helpers/petitions";
 import React from "react";
 
 const Register = () => {
+
+    const handleRegister = async (values) => {
+        try {
+            const { confirmPassword, ...data } = values;
+            await registerUser(data);
+        } catch (error) {
+            console.error("Error trying to register:", error);
+        }
+    }
+
     return (
         <View style={styles.container}>
             <Formik
      initialValues={{ email: '',
-     name:'',
-     surname: '',
      username: '',
      password:'',
-     confirmPassword: '',
      country: '',
      city: '',
      phone: ''
     }}
      validate={validationRegister}
-     onSubmit={values => console.log(values)}
+     onSubmit={handleRegister}
    >
      {({ handleChange, handleBlur, handleSubmit, values,errors, touched }) => (
         <ScrollView>

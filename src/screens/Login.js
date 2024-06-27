@@ -4,15 +4,34 @@ import { Formik } from 'formik';
 import { AntDesign } from '@expo/vector-icons';
 import validationLogin from "../helpers/validationLogin";
 import React from "react";
+import { loginUser, loginUserWithProvider } from "../helpers/petitions";
 
 const Login = () => {
+
+
+    const handleLogin = async (values) => {
+        try {
+            await loginUser(values);
+        } catch (error) {
+            console.error("Error trying to register:", error);
+        }
+    }
+
+    const handleLogSM = async (provider) => {
+        try {
+            await loginUserWithProvider(provider);
+        } catch (error) {
+            console.error("Error trying to register:", error);
+        }
+    }
+
     return (
         <View style={styles.container}>
             <Formik
      initialValues={{ email:'',
      password:''}}
      validate={validationLogin}
-     onSubmit={values => console.log(values)}
+     onSubmit={handleLogin}
    >
      {({ handleChange, handleBlur, handleSubmit, values,errors, touched }) => (
         <ScrollView>
@@ -55,13 +74,13 @@ const Login = () => {
             <View style={styles.rrssContainer}>
                 <Text style={styles.text}>Or sign up with</Text>
                 <View style={styles.rrss}>
-                   <TouchableOpacity>
+                   <TouchableOpacity onPress={()=> handleLogSM('google')}>
                         <AntDesign name="google" size={24} color="white" />
                    </TouchableOpacity>
-                   <TouchableOpacity>
+                   <TouchableOpacity onPress={()=> handleLogSM('github')}>
                         <AntDesign name="github" size={24} color="white" />
                    </TouchableOpacity>
-                   <TouchableOpacity>
+                   <TouchableOpacity onPress={()=> handleLogSM('twitter')}>
                         <AntDesign name="twitter" size={24} color="white" />
                    </TouchableOpacity>
                 </View>
