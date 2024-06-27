@@ -4,11 +4,11 @@ import ChatHeader from "../components/ChatHeader/ChatHeader";
 import ChatInput from "../components/ChatInput/ChatInput";
 import ChatMessages from "../components/ChatMessages/ChatMessages";
 
-const Chat = () => {
+const Chat = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#7E78D2" />
-      <ChatHeader />
+      <ChatHeader navigation={navigation} />
       <ChatMessages />
       <ChatInput />
     </SafeAreaView>

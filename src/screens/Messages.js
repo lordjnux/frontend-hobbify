@@ -18,15 +18,18 @@ const userExamplle = {
   hobbies: ["Boxeo", "Motocross", "Tejer"],
   message: "hola, mucho gusto en conocerte!",
 };
-const Messages = () => {
+const Messages = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#7E78D2" />
-      <MessagesHeader />
+      <MessagesHeader navigation={navigation} />
       <View style={styles.mainContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
           {h1.map((numbb, index) => (
-            <TouchableOpacity key={index}>
+            <TouchableOpacity
+              key={index}
+              onPress={() => navigation.push("Chat")}
+            >
               <View style={styles.card}>
                 <View style={styles.mainCard}>
                   <View style={{ margin: 5 }}>

@@ -33,11 +33,11 @@ const userExamplle = {
   img: require("../../assets/no-pic.png"),
   hobbies: ["Boxeo", "Motocross", "Tejer"],
 };
-const MainFeed = () => {
+const MainFeed = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#7E78D2" />
-      <Header user={user} />
+      <Header user={user} navigation={navigation} />
       <View style={styles.mainContainer}>
         <View style={{ margin: 10 }}>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -78,7 +78,7 @@ const MainFeed = () => {
           </ScrollView>
         </View>
       </View>
-      <NavBar />
+      <NavBar navigation={navigation} />
     </SafeAreaView>
   );
 };

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 
-const NavBar = () => {
+const NavBar = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
@@ -17,7 +17,7 @@ const NavBar = () => {
             source={require("../../../assets/groups.png")}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.push("Messages")}>
           <Image
             style={styles.icon}
             source={require("../../../assets/messages.png")}

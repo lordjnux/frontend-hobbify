@@ -7,11 +7,11 @@ import {
 } from "react-native";
 import React from "react";
 
-const MessagesHeader = () => {
+const MessagesHeader = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.arrow}>{"<"}</Text>
         </TouchableOpacity>
         <Text>ACA VA UN BUSCADOR</Text>

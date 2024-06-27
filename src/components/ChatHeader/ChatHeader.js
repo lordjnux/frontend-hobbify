@@ -8,11 +8,11 @@ import {
 } from "react-native";
 import React from "react";
 
-const ChatHeader = () => {
+const ChatHeader = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.arrow}>{"<"}</Text>
         </TouchableOpacity>
         <View>
