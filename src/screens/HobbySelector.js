@@ -1,6 +1,6 @@
 import { Button, TextInput,View, Text, StyleSheet,ScrollView,TouchableOpacity } from "react-native";
 import { useState,useEffect } from "react";
-import HobbyCards from "../components/HobbyCards";
+import HobbyCards from "../components/HobbyCards/HobbyCards";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const tempHobbies = [
