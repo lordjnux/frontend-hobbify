@@ -1,6 +1,7 @@
 import { Button, TextInput,View, Text, StyleSheet,ScrollView,TouchableOpacity } from "react-native";
 import { useState,useEffect } from "react";
 import HobbyCards from "../components/HobbyCards";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const tempHobbies = [
     {
@@ -60,6 +61,51 @@ const HobbySelector = () => {
 
     const [hobbies,setHobbies] = useState(tempHobbies)
     const [searched,setSearched] = useState("")
+    const [isLimited,setIsLimited] = useState(false)
+    const [selectionData,setSelectionData] = useState([])
+
+
+    useEffect(() => {
+
+        const saveSelection = async () => {
+            try {
+                const selectionDataString = await AsyncStorage.getItem('hobbies')
+                if (selectionDataString) {
+                    setSelectionData(JSON.parse(selectionDataString));
+                } else {
+                    await AsyncStorage.setItem('hobbies', JSON.stringify([]))
+                }
+                setSelectionData(JSON.parse(selectionDataString));
+                    setIsLimited(JSON.parse(selectionDataString).length >= 3)
+                console.log(`seleccion inicial: ${selectionData}`)
+            } catch (error) {
+                console.error('Error saving initial hobbies:', error)
+            }
+        };
+
+        saveSelection()
+    }, [])
+
+    const handlePressHobby = async(name) => {
+        try {
+            let newSelection
+            if (selectionData.includes(name)) {
+                newSelection = selectionData.filter(hobby => hobby !== name);
+            } else if(selectionData.length < 3) {
+                newSelection = [...selectionData, name]
+            } else {
+                newSelection = selectionData
+                console.log("no se pueden elegir mas de 3 hobbies")
+            }
+
+            setSelectionData(newSelection);
+            await AsyncStorage.setItem('hobbies', JSON.stringify(newSelection))
+            setIsLimited(newSelection.length >= 3)
+            console.log(newSelection)
+        } catch (error) {
+            console.error('Error saving hobbies:', error)
+        }
+    }
 
     useEffect(() => {
         const newHobbies = tempHobbies.filter(hobbie => hobbie.name.toLocaleLowerCase().includes(searched.toLowerCase()))
@@ -74,17 +120,23 @@ const HobbySelector = () => {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={[styles.text,styles.title]}>Choose Your Hobbies!</Text>
-                <Text style={styles.text}>You can select up to three hobbies. </Text>
-                <Text style={styles.text}>Would you like to choose more? Upgrade to our premium plan here</Text>
+                <Text style={styles.subtitile}>You can select up to three hobbies. </Text>
+                <Text style={styles.text}>
+                Would you like to choose more? {" "}
+                        <TouchableOpacity onPress={() => console.log("Navigate to premium plan screen")}>
+                            <Text style={styles.linkText}>Upgrade to our premium plan here</Text>
+                        </TouchableOpacity>
+                </Text>
                 <TextInput style={styles.input}
                 value={searched}
                 onChangeText={handleInputChange} 
                 placeholder="Search your hobby..."></TextInput>
+                {isLimited && <Text style={styles.limitMessage}>You've reached your hobbies limit</Text>}
             </View>
             <ScrollView>
             <View style={styles.cardsContainer}>
                 {hobbies.map(hobby => (
-                    <HobbyCards key={hobby.id} {...hobby} />
+                    <HobbyCards key={hobby.id} {...hobby} onPress={()=> handlePressHobby(hobby.name)} disable={isLimited}/>
                 ))}
             </View>
             </ScrollView>
@@ -117,11 +169,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    text: {
-        alignSelf: 'center'
-    },
     title: {
-        fontSize: 25
+        fontSize: 25,
+        alignSelf: 'center',
+        marginBottom: 10
+    },
+    subtitile: {
+        fontSize:17,
+        marginBottom: 5,
+        alignSelf: 'center'
     },
     input: {
         borderWidth: 1,
@@ -144,6 +200,18 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 15,
         width: '50%'
+    },
+    linkText: {
+        textDecorationLine: 'underline',
+        color: 'white'
+    },
+    text: {
+        alignSelf: 'center'
+    },
+    limitMessage: {
+        alignSelf: 'center', 
+        marginTop: 8,
+        color: 'darkred'
     }
 })
 
