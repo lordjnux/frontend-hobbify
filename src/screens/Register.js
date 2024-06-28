@@ -9,8 +9,7 @@ const Register = () => {
 
     const handleRegister = async (values) => {
         try {
-            const { confirmPassword, ...data } = values;
-            await registerUser(data);
+            await registerUser(values);
         } catch (error) {
             console.error("Error trying to register:", error);
         }
@@ -22,6 +21,7 @@ const Register = () => {
      initialValues={{ email: '',
      username: '',
      password:'',
+     confirmPassword: '',
      country: '',
      city: '',
      phone: ''
