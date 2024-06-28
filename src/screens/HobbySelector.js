@@ -57,7 +57,7 @@ const tempHobbies = [
 ]
 
 
-const HobbySelector = () => {
+const HobbySelector = ({navigation}) => {
 
     const [hobbies,setHobbies] = useState(tempHobbies)
     const [searched,setSearched] = useState("")
@@ -116,6 +116,10 @@ const HobbySelector = () => {
         setSearched(text)
     }
 
+    const handleSelectHobbies = () => {
+        navigation.push("MainFeed")
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -141,7 +145,7 @@ const HobbySelector = () => {
             </View>
             </ScrollView>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => console.log("Navigate to feed screen")}>
+                <TouchableOpacity style={styles.button} onPress={() => handleSelectHobbies}>
                         <Text style={styles.text}>Go to Feed</Text>
                 </TouchableOpacity>
             </View>

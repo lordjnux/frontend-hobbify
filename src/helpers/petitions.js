@@ -12,8 +12,7 @@ import axios from "axios";
 
 export const loginUser = async(values) => {
     try {
-    // axios.post('api-back-loginUser', values)
-        console.log(values)
+        axios.post('http://localhost:3017/auth-own/login', values)
     }
     catch(error) {
         throw new Error(`error trying to login: ${error}`)
