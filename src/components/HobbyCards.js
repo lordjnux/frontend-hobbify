@@ -1,12 +1,23 @@
 import { View, Text, StyleSheet,TouchableOpacity } from "react-native";
+import { useState } from "react";
 
 const HobbyCards = ({emoji,name}) => {
+
+    const [isPressed,setIsPressed] = useState(false)
+
+    const handlePress = () => {
+        setIsPressed(!isPressed)
+    }
+    
+    const cardStyle = {
+        ...styles.cardContainer,
+        backgroundColor: isPressed ? '#7E78D2' : 'white',
+    }
+
     return(
-        <TouchableOpacity style={styles.cardContainer}>
-            <View>
+        <TouchableOpacity style={cardStyle} onPress={handlePress}>
                 <Text style={styles.emoji}>{emoji}</Text>
                 <Text>{name}</Text>
-            </View>
         </TouchableOpacity>
     )
 }
@@ -29,6 +40,9 @@ const styles = StyleSheet.create({
     },
     emoji: {
         alignSelf: 'center'
+    },
+    pressed: {
+        backgroundColor: 'green'
     }
 })
 

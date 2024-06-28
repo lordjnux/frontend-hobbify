@@ -1,6 +1,6 @@
 import { Button, TextInput,View, Text, StyleSheet,ScrollView,TouchableOpacity } from "react-native";
+import { useState,useEffect } from "react";
 import HobbyCards from "../components/HobbyCards";
-import { Ionicons } from '@expo/vector-icons';
 
 const tempHobbies = [
     {
@@ -57,6 +57,19 @@ const tempHobbies = [
 
 
 const HobbySelector = () => {
+
+    const [hobbies,setHobbies] = useState(tempHobbies)
+    const [searched,setSearched] = useState("")
+
+    useEffect(() => {
+        const newHobbies = tempHobbies.filter(hobbie => hobbie.name.toLocaleLowerCase().includes(searched.toLowerCase()))
+        setHobbies(newHobbies)
+    }, [searched])
+
+    const handleInputChange = (text) => {
+        setSearched(text)
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -64,11 +77,13 @@ const HobbySelector = () => {
                 <Text style={styles.text}>You can select up to three hobbies. </Text>
                 <Text style={styles.text}>Would you like to choose more? Upgrade to our premium plan here</Text>
                 <TextInput style={styles.input}
+                value={searched}
+                onChangeText={handleInputChange} 
                 placeholder="Search your hobby..."></TextInput>
             </View>
             <ScrollView>
             <View style={styles.cardsContainer}>
-                {tempHobbies.map(hobby => (
+                {hobbies.map(hobby => (
                     <HobbyCards key={hobby.id} {...hobby} />
                 ))}
             </View>
