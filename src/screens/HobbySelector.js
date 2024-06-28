@@ -62,6 +62,7 @@ const HobbySelector = ({navigation}) => {
     const [hobbies,setHobbies] = useState(tempHobbies)
     const [searched,setSearched] = useState("")
     const [isLimited,setIsLimited] = useState(false)
+    const [canProceed, setCanProceed] = useState(false)
     const [selectionData,setSelectionData] = useState([])
 
 
@@ -101,6 +102,7 @@ const HobbySelector = ({navigation}) => {
             setSelectionData(newSelection);
             await AsyncStorage.setItem('hobbies', JSON.stringify(newSelection))
             setIsLimited(newSelection.length >= 3)
+            setCanProceed(newSelection.length > 0)
             console.log(newSelection)
         } catch (error) {
             console.error('Error saving hobbies:', error)
@@ -117,7 +119,7 @@ const HobbySelector = ({navigation}) => {
     }
 
     const handleSelectHobbies = () => {
-        navigation.push("MainFeed")
+       navigation.push("MainFeed")
     }
 
     return(
@@ -138,14 +140,25 @@ const HobbySelector = ({navigation}) => {
                 {isLimited && <Text style={styles.limitMessage}>You've reached your hobbies limit</Text>}
             </View>
             <ScrollView>
-            <View style={styles.cardsContainer}>
-                {hobbies.map(hobby => (
-                    <HobbyCards key={hobby.id} {...hobby} onPress={()=> handlePressHobby(hobby.name)} disable={isLimited}/>
-                ))}
-            </View>
+            {hobbies.length > 0 ? (
+                    <View style={styles.cardsContainer}>
+                        {hobbies.map(hobby => (
+                            <HobbyCards
+                                key={hobby.id}
+                                {...hobby}
+                                onPress={() => handlePressHobby(hobby.name)}
+                                disable={isLimited}
+                            />
+                        ))}
+                    </View>
+                ) : (
+                    <Text style={styles.noResultsText}>
+                        No hobbies found matching "{searched}". Please try a different search term.
+                    </Text>
+                )}
             </ScrollView>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => handleSelectHobbies}>
+                <TouchableOpacity style={styles.button} onPress={() => handleSelectHobbies()} disabled={!canProceed}>
                         <Text style={styles.text}>Go to Feed</Text>
                 </TouchableOpacity>
             </View>
@@ -216,6 +229,12 @@ const styles = StyleSheet.create({
         alignSelf: 'center', 
         marginTop: 8,
         color: 'darkred'
+    },
+    noResultsText: {
+        alignSelf: 'center',
+        margin: 30,
+        fontSize: 15,
+        color: 'white'
     }
 })
 
