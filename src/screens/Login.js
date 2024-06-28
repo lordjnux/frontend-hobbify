@@ -6,12 +6,13 @@ import validationLogin from "../helpers/validationLogin";
 import React from "react";
 import { loginUser, loginUserWithProvider } from "../helpers/petitions";
 
-const Login = () => {
+const Login = ({navigation}) => {
 
 
     const handleLogin = async (values) => {
         try {
-            await loginUser(values);
+            await loginUser(values)
+            navigation.push("MainFeed")
         } catch (error) {
             console.error("Error trying to register:", error);
         }
@@ -67,7 +68,7 @@ const Login = () => {
             </TouchableOpacity>
             <Text style={styles.text}>
                     Not a member yet? {" "}
-                        <TouchableOpacity onPress={() => console.log("Navigate to register screen")}>
+                        <TouchableOpacity onPress={() => navigation.push("Register")}>
                             <Text style={styles.linkText}>Register here</Text>
                         </TouchableOpacity>
                             </Text>

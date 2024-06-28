@@ -5,12 +5,12 @@ import validationRegister from "../helpers/validationRegister";
 import { registerUser } from "../helpers/petitions";
 import React from "react";
 
-const Register = () => {
+const Register = ({ navigation }) => {
 
     const handleRegister = async (values) => {
         try {
-            const { confirmPassword, ...data } = values;
-            await registerUser(data);
+            await registerUser(values);
+            navigation.push("HobbySelector")
         } catch (error) {
             console.error("Error trying to register:", error);
         }
@@ -22,6 +22,7 @@ const Register = () => {
      initialValues={{ email: '',
      username: '',
      password:'',
+     confirmPassword: '',
      country: '',
      city: '',
      phone: ''
@@ -130,7 +131,7 @@ const Register = () => {
             </TouchableOpacity>
             <Text style={styles.text}>
                     Already have an account? {" "}
-                        <TouchableOpacity onPress={() => console.log("Navigate to login screen")}>
+                        <TouchableOpacity onPress={() => navigation.push("Login")}>
                             <Text style={styles.linkText}>Login here</Text>
                         </TouchableOpacity>
                             </Text>
