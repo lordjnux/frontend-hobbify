@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_URL } from '@env'
 
  export const registerUser = async(values) => {
     try {
@@ -12,7 +13,7 @@ import axios from "axios";
 
 export const loginUser = async(values) => {
     try {
-        axios.post('http://localhost:3017/auth-own/login', values)
+        axios.post(`${API_URL}/auth-own/login`, values)
     }
     catch(error) {
         throw new Error(`error trying to login: ${error}`)
