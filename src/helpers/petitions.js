@@ -2,9 +2,13 @@ import axios from "axios";
 import { API_URL } from '@env'
 
  export const registerUser = async(values) => {
+
+    const [email,password] = values
+
     try {
         // axios.post('api-back-postUser', values)
-        console.log(values)
+        await loginUser(email,password)
+
     }
     catch(error) {
         throw new Error(`error trying to register: ${error}`)
