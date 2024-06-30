@@ -17,7 +17,8 @@ import { API_URL } from '@env'
 
 export const loginUser = async(values) => {
     try {
-        axios.post(`${API_URL}/auth-own/login`, values)
+        const response = await axios.post(`${API_URL}/authown/login`, values);
+        return response
     }
     catch(error) {
         throw new Error(`error trying to login: ${error}`)
