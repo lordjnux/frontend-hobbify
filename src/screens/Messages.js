@@ -18,6 +18,100 @@ const userExamplle = {
   hobbies: ["Boxeo", "Motocross", "Tejer"],
   message: "hola, mucho gusto en conocerte!",
 };
+const users = [
+  {
+    name: "Sana Minatozaki",
+    img: require("../../assets/no-pic13.png"),
+    hobbies: ["Pesca", "Senderismo", "Escalar"],
+    message: "De nada, pero cuando iras?",
+  },
+  {
+    name: "Sofía Morales",
+    img: require("../../assets/no-pic8.png"),
+    hobbies: ["Fotografía", "Yoga", "Cocina"],
+    message: "Hola, encantado de conocerte!",
+  },
+  {
+    name: "Luis Martínez",
+    img: require("../../assets/no-pic3.png"),
+    hobbies: ["Fútbol", "Videojuegos", "Fotografía"],
+    message: "Hola, qué tal!",
+  },
+  {
+    name: "Miguel Torres",
+    img: require("../../assets/no-pic9.png"),
+    hobbies: ["Ciclismo", "Viajar", "Escribir"],
+    message: "Encantado de conocerte!",
+  },
+  {
+    name: "Patricia Vargas",
+    img: require("../../assets/no-pic12.png"),
+    hobbies: ["Tejer", "Natación", "Leer"],
+    message: "Hola, mucho gusto en conocerte!",
+  },
+  {
+    name: "Alberto Ruiz",
+    img: require("../../assets/no-pic6.png"),
+    hobbies: ["Escalar", "Videojuegos", "Fotografía"],
+    message: "Es un placer conocerte!",
+  },
+  {
+    name: "Juan Pérez",
+    img: require("../../assets/no-pic10.png"),
+    hobbies: ["Leer", "Correr", "Viajar"],
+    message: "Es un placer conocerte!",
+  },
+  {
+    name: "Daniel Herrera",
+    img: require("../../assets/no-pic4.png"),
+    hobbies: ["Fútbol", "Ciclismo", "Viajar"],
+    message: "Un placer conocerte!",
+  },
+  {
+    name: "María Rodríguez",
+    img: require("../../assets/no-pic15.png"),
+    hobbies: ["Bailar", "Escribir", "Cine"],
+    message: "Hola, es un placer conocerte!",
+  },
+  {
+    name: "Natanael Romero",
+    img: require("../../assets/no-pic14.png"),
+    hobbies: ["Bailar", "Escribir", "Cocinar"],
+    message: "Mucho gusto en conocerte!",
+  },
+  {
+    name: "Elena Ramírez",
+    img: require("../../assets/no-pic7.png"),
+    hobbies: ["Pintar", "Cine", "Jardinería"],
+    message: "Es un placer conocerte!",
+  },
+  {
+    name: "Roberto Fernández",
+    img: require("../../assets/no-pic11.png"),
+    hobbies: ["Motocross", "Pesca", "Guitarra"],
+    message: "Hola, qué tal!",
+  },
+  {
+    name: "Lucía López",
+    img: require("../../assets/no-pic5.png"),
+    hobbies: ["Jardinería", "Natación", "Costura"],
+    message: "Mucho gusto!",
+  },
+  {
+    name: "Ana Gómez",
+    img: require("../../assets/no-pic2.png"),
+    hobbies: ["Cocinar", "Pintar", "Yoga"],
+    message: "Encantado de conocerte!",
+  },
+  {
+    name: "Jorge Díaz",
+    img: require("../../assets/no-pic1.png"),
+    hobbies: ["Guitarra", "Leer", "Correr"],
+    message: "Qué gusto conocerte!",
+  },
+];
+
+console.log(users);
 const Messages = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
@@ -25,7 +119,7 @@ const Messages = ({ navigation }) => {
       <MessagesHeader navigation={navigation} />
       <View style={styles.mainContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {h1.map((numbb, index) => (
+          {users.map((userExamplle, index) => (
             <TouchableOpacity
               key={index}
               onPress={() => navigation.push("Chat")}
