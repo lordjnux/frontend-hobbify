@@ -1,9 +1,14 @@
 import axios from "axios";
+import { API_URL } from '@env'
 
  export const registerUser = async(values) => {
+
+    const [email,password] = values
+
     try {
         // axios.post('api-back-postUser', values)
-        console.log(values)
+        await loginUser(email,password)
+
     }
     catch(error) {
         throw new Error(`error trying to register: ${error}`)
@@ -12,7 +17,8 @@ import axios from "axios";
 
 export const loginUser = async(values) => {
     try {
-        axios.post('http://localhost:3017/auth-own/login', values)
+        const response = await axios.post(`${API_URL}/authown/login`, values);
+        return response
     }
     catch(error) {
         throw new Error(`error trying to login: ${error}`)

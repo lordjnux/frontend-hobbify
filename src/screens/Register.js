@@ -17,6 +17,7 @@ const Register = ({ navigation }) => {
     }
 
     return (
+        <View style={styles.gral}>
         <View style={styles.container}>
             <Formik
      initialValues={{ email: '',
@@ -140,10 +141,16 @@ const Register = ({ navigation }) => {
      )}
    </Formik>
         </View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
+    gral: {
+        backgroundColor: '#7E78D2',
+        width: '100%',
+        height: '100%'
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
