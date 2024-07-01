@@ -12,7 +12,7 @@ import React from "react";
 import Header from "../components/Header/Header";
 import NavBar from "../components/NavBar/NavBar";
 const user = {
-  img: require("../../assets/no-pic.png"),
+  img: require("../../assets/user-test.jpeg"),
   name: "pedrito1",
 };
 const hh = {
@@ -28,11 +28,83 @@ const hh = {
   a10: "10",
 };
 const h1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-const userExamplle = {
-  name: "Pedrito Fulano",
-  img: require("../../assets/no-pic.png"),
-  hobbies: ["Boxeo", "Motocross", "Tejer"],
-};
+const users = [
+  {
+    name: "Juan Pérez",
+    img: require("../../assets/no-pic10.png"),
+    hobbies: ["Leer", "Correr", "Viajar"],
+  },
+  {
+    name: "Ana Gómez",
+    img: require("../../assets/no-pic2.png"),
+    hobbies: ["Cocinar", "Pintar", "Yoga"],
+  },
+  {
+    name: "Luis Martínez",
+    img: require("../../assets/no-pic3.png"),
+    hobbies: ["Fútbol", "Videojuegos", "Fotografía"],
+  },
+  {
+    name: "María Rodríguez",
+    img: require("../../assets/no-pic15.png"),
+    hobbies: ["Bailar", "Escribir", "Cine"],
+  },
+  {
+    name: "Sana Minatozaki",
+    img: require("../../assets/no-pic13.png"),
+    hobbies: ["Bicicletas", "Leer", "Escalar"],
+  },
+  {
+    name: "Lucía López",
+    img: require("../../assets/no-pic5.png"),
+    hobbies: ["Jardinería", "Natación", "Costura"],
+  },
+  {
+    name: "Jorge Díaz",
+    img: require("../../assets/no-pic1.png"),
+    hobbies: ["Tocar la guitarra", "Leer", "Correr"],
+  },
+  {
+    name: "Sofía Morales",
+    img: require("../../assets/no-pic8.png"),
+    hobbies: ["Fotografía", "Yoga", "Cocina"],
+  },
+  {
+    name: "Miguel Torres",
+    img: require("../../assets/no-pic9.png"),
+    hobbies: ["Ciclismo", "Viajar", "Escribir"],
+  },
+  {
+    name: "Elena Ramírez",
+    img: require("../../assets/no-pic7.png"),
+    hobbies: ["Pintar", "Cine", "Jardinería"],
+  },
+  {
+    name: "Roberto Fernández",
+    img: require("../../assets/no-pic11.png"),
+    hobbies: ["Motocross", "Pesca", "Guitarra"],
+  },
+  {
+    name: "Patricia Vargas",
+    img: require("../../assets/no-pic12.png"),
+    hobbies: ["Tejer", "Natación", "Leer"],
+  },
+  {
+    name: "Alberto Ruiz",
+    img: require("../../assets/no-pic6.png"),
+    hobbies: ["Escalar", "Videojuegos", "Fotografía"],
+  },
+  {
+    name: "Natanael Romero",
+    img: require("../../assets/no-pic14.png"),
+    hobbies: ["Bailar", "Escribir", "Cocinar"],
+  },
+  {
+    name: "Daniel Herrera",
+    img: require("../../assets/no-pic4.png"),
+    hobbies: ["Fútbol", "Ciclismo", "Viajar"],
+  },
+];
 const MainFeed = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
@@ -41,7 +113,7 @@ const MainFeed = ({ navigation }) => {
       <View style={styles.mainContainer}>
         <View style={{ margin: 10 }}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {h1.map((numbb, index) => (
+            {users.map((userExamplle, index) => (
               <View key={index} style={styles.card}>
                 <View style={styles.cardMain}>
                   <View style={{ margin: 5 }}>

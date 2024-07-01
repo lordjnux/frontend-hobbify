@@ -19,7 +19,7 @@ const ChatHeader = ({ navigation }) => {
           <TouchableOpacity>
             <Image
               style={styles.profile}
-              source={require("../../../assets/no-pic.png")}
+              source={require("../../../assets/no-pic13.png")}
             />
           </TouchableOpacity>
         </View>
